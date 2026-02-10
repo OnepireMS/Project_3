@@ -13,7 +13,7 @@ battery = [220,  90, 140, -180, 0, -45]
 mc.send_angles([0, 0, 0, 0, 0, 0], speed)
 time.sleep(4)
 
-# --- teach pot ---
+
 mc.release_all_servos()
 time.sleep(0.5)
 input("Move arm to POT by hand, then press ENTER to record... ")
@@ -41,18 +41,15 @@ while True:
     else:
         print("Invalid.")
         continue
-
-    # open gripper (tune values for your gripper)
+    
     mc.set_gripper_value(70, 25)
     time.sleep(0.5)
-
-    # go to object + grab
+    
     mc.send_coords(obj, speed, mode)
     time.sleep(5)
     mc.set_gripper_value(10, 25)
     time.sleep(2)
-
-    # go to pot + release
+    
     mc.send_coords(pot_coords, speed, mode)
     time.sleep(5)
     mc.set_gripper_value(70, 25)
